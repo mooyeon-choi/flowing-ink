@@ -44,7 +44,7 @@ export class Visual {
     });
     stage.addChild(this.container);
 
-    this.beforeParticles = this.particles;
+    this.beforeParticles = this.shuffle(this.particles);
     this.particles = [];
     if (this.pos.length <= this.beforeParticles.length) {
       for (let i = 0; i < this.pos.length; i++) {
