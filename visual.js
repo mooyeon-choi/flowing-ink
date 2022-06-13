@@ -49,8 +49,8 @@ export class Visual {
     if (this.pos.length <= this.beforeParticles.length) {
       for (let i = 0; i < this.pos.length; i++) {
         const item = new Particle(this.pos[i], this.texture);
-        item.x = this.beforeParticles[i].x;
-        item.y = this.beforeParticles[i].y;
+        item.x = this.beforeParticles[Math.ceil(i * this.beforeParticles.length / this.pos.length)].x;
+        item.y = this.beforeParticles[Math.ceil(i * this.beforeParticles.length / this.pos.length)].y;
         this.container.addChild(item.sprite);
         this.particles.push(item);
       }
@@ -64,13 +64,8 @@ export class Visual {
       } else {
         for (let i = 0; i < this.pos.length; i++) {
           const item = new Particle(this.pos[i], this.texture);
-          if (i < this.beforeParticles.length) {
-            item.x = this.beforeParticles[i].x;
-            item.y = this.beforeParticles[i].y;
-          } else {
-            item.x = this.beforeParticles[this.beforeParticles.length - 2].x;
-            item.y = this.beforeParticles[this.beforeParticles.length - 2].y;
-          }
+          item.x = this.beforeParticles[Math.ceil(i * this.beforeParticles.length / this.pos.length)].x;
+          item.y = this.beforeParticles[Math.ceil(i * this.beforeParticles.length / this.pos.length)].y;
           this.container.addChild(item.sprite);
           this.particles.push(item);
         }
@@ -110,5 +105,19 @@ export class Visual {
   onTouchEnd() {
     this.mouse.x = 0;
     this.mouse.y = 0;
+  }
+
+  shuffle(inputArr) {
+    const arr = inputArr;
+
+    for (let i = arr.length - 1; i > 0; i--) {
+      const randomPos = Math.floor(Math.random() * (i + 1));
+
+      const temp = arr[i];
+      arr[i] = arr[randomPos];
+      arr[randomPos] = temp;
+    }
+
+    return arr;
   }
 }
