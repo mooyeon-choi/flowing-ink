@@ -23,8 +23,8 @@ export class Particle {
 
   draw() {
     
-    this.x += (this.savedX - this.x) * MOVE_SPEED * Math.random();
-    this.y += (this.savedY - this.y) * MOVE_SPEED * Math.random();
+    this.x += (this.savedX - this.x) * MOVE_SPEED;
+    this.y += (this.savedY - this.y) * MOVE_SPEED;
     
 
     this.vx *= FRICTION;
